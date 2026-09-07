@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mlaouhi Ines</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT ME</a>
+            <a href="projects.html" class="active">PROJECTS</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+    <!-- home section -->
+    <section class="home contact_home">
+        <div class="contact_home_content">
+            <!-- home title -->
+            <div class="home_title contact_title">
+                <h1>Project Details</h1>
+                <h3>3D Fox Character Modeling</h3>
+                <!-- line -->
+                <div class="contact_line"></div>
+            </div>
+        </div>
+        <div class="scroll_to_bottom" onclick="scrollToBottom()">
+            <img src="assets/scroll.svg" alt="">
+        </div>
+    </section>
+    <section class="project_detail_container">
+        <video width="100%" controls>
+            <source src="assets/Projects/vids/fox.mp4">
+        </video>
+        <h1 class="project_story">Project Story</h1>
+        <p class="project_description">Explore my first Blender project—a 3D Fox Character Modeling, where I ventured
+            into the intricate world of digital art and character design. This project represents a significant
+            milestone in my journey as a 3D artist, combining creativity, technical skills, and attention to detail to
+            bring a charming fox character to life. From the initial concept sketches to the final polished render,
+            every step of the process was an opportunity to learn, experiment, and push the boundaries of what I can
+            achieve. This fox character embodies the playful spirit, vibrant personality, and complexity that 3D
+            modeling offers. This is just the beginning of many more creative endeavors to come as I continue to explore
+            the limitless possibilities of 3D design and animation.</p>
+        <div class="project_images">
+            <img src="assets/Projects/foxfront.png" alt="">
+            <img src="assets/Projects/foxside.png" alt="">
+        </div>
+        <!-- back arrow -->
+        <a href="#" onclick="history.back(); return false;"><img src="assets/Arrow.svg" alt="" class="back_arrow"></a>
+    </section>
+    <!-- contact section -->
+    <section class="contact projects_page_contact">
+        <div class="contact_content about_contact_content">
+            <h1 class="contact_content_title">Let's <br>Work Together</h1>
+            <div class="contact_info">
+                <button class="email info"><img src="assets/email.svg" alt=""
+                        class="contact_icon">Ines.mlaouhi.pro@gmail.com</button>
+                <button class="resume info"><img src="assets/resume.svg" alt="" class="contact_icon">Download My
+                    Resume</button>
+            </div>
+        </div>
+    </section>
+    <!-- line -->
+    <div class="sep_line"></div>
+    <!-- footer -->
+    <footer class="footer">
+        <p class="rights"><img src="assets/tn.svg" alt="" class="tn"> Mlaouhi Ines © 2024 All rights reserved.</p>
+        <div class="footer_links">
+            <a href="https://www.linkedin.com/in/ines-mlaouhi-5035621aa/?fbclid=IwAR2ePNWgMioVJjxw8cvRK5J7Cy8u1AWcp0rLDaTuuSqPTkZryLCasBpeSaY"
+                target="_blank"><img src="assets/linkedin.svg" alt="lnkedin"></a>
+            <a href="https://www.behance.net/inesmlaouhi" target="_blank"><img src="assets/behance.svg"
+                    alt="behance"></a>
+            <a href="https://www.pinterest.fr/Ines0Mlaouhi/" target="_blank"><img src="assets/pinterest.svg"
+                    alt="pinterest"></a>
+            <a href="https://github.com/InesMlh" target="_blank"><img src="assets/github.svg" alt="github"></a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

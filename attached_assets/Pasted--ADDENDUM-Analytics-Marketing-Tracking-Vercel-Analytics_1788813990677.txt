@@ -1,0 +1,47 @@
+# ADDENDUM — Analytics & Marketing Tracking (Vercel Analytics + Google Analytics)
+
+> Add this to the current refinement pass. This must be working code in the project before deployment, not something configured only in a dashboard afterward.
+
+---
+
+## WHY THIS MATTERS
+
+Ines wants to track visibility/traffic once this is live on Vercel, using both **Vercel's own analytics/KPIs** and **Google Analytics (GA4)**. Both require actual code in the project — Vercel's dashboard will show nothing until its analytics package is installed and initialized, and Google Analytics needs its tracking script and a real Measurement ID wired in. Set both up now so they're active from the moment of deployment.
+
+---
+
+## 1. VERCEL ANALYTICS + SPEED INSIGHTS
+
+1. Install and initialize `@vercel/analytics` in the project (the correct integration point depends on the actual framework confirmed in the earlier tech-stack report — e.g., a root layout/App component for a Next.js/React-based project, or the main HTML entry point for a static build). This is what powers Vercel's traffic/visitor KPIs in its dashboard.
+2. Also install and initialize `@vercel/speed-insights` alongside it — this gives Ines real-user performance data (Core Web Vitals) directly in the same Vercel dashboard, at effectively no extra effort since it's the same setup pattern.
+3. Confirm these packages are only active in the deployed/production environment (this is Vercel Analytics' default behavior) so local development isn't polluting real traffic data.
+4. Explain to Ines, in plain steps, that once deployed, she needs to **enable Analytics (and Speed Insights) for this specific project from the Vercel dashboard** (Project → Analytics tab → Enable) — the code alone sends the data, but the dashboard feature needs to be turned on for her to see it, and on Vercel's free/Hobby plan there may be usage limits or a paid-tier requirement for full analytics history — flag this plainly so she isn't confused if she hits a limit.
+
+---
+
+## 2. GOOGLE ANALYTICS (GA4)
+
+1. Add Google Analytics (GA4) tracking to every page of the site, using a standard `gtag.js`-based integration (or the framework's recommended equivalent, e.g. a dedicated script-loading pattern if using Next.js) — loaded once at the site's root/layout level so it covers every route without needing to be added per-page.
+2. The GA4 Measurement ID (format like `G-XXXXXXXXXX`) must come from an **environment variable** (e.g., `NEXT_PUBLIC_GA_MEASUREMENT_ID` or equivalent naming for the actual framework used) — never hardcode it directly in the source, so Ines can swap it without a code change if needed.
+3. Confirm route/page-view tracking actually fires correctly on client-side navigation between pages (single-page-app style routing can silently fail to register subsequent page views if not wired to the router's navigation events) — verify this explicitly, not just that the script loads once on first load.
+4. Add this new environment variable to the environment-variables checklist/report from the previous pass (name, purpose, where Ines gets the value — from her own Google Analytics account, under Admin → Data Streams → her web stream — and where to set it in Vercel's project settings).
+
+---
+
+## 3. PRIVACY / CONSENT CONSIDERATION
+
+Since this is a public portfolio that may receive visitors from the EU/UK (where GDPR/consent rules for analytics cookies apply) as well as elsewhere:
+
+1. Add a simple, unobtrusive **cookie/analytics consent notice** (a small banner, dismissible, appearing on first visit) informing visitors that analytics are used, with an "Accept"/"Decline" choice — and make Google Analytics only actually fire *after* consent is given (Vercel's own analytics is generally considered more privacy-friendly and typically doesn't require the same consent gating, but Google Analytics does, since it sets identifying cookies).
+2. Keep this lightweight and consistent with the site's visual design (rounded, matching the established button/color system) — it should not feel like a jarring, generic cookie-law popup.
+3. If a full custom consent solution feels like overkill for a personal portfolio, propose the simplest defensible approach and explain the trade-off to Ines plainly, rather than silently skipping consent handling altogether.
+
+---
+
+## 4. FINAL VERIFICATION FOR THIS ADDENDUM
+
+- Vercel Analytics and Speed Insights packages are installed and correctly initialized for the confirmed framework.
+- Google Analytics fires on every page, including client-side route changes, using an environment-variable-driven Measurement ID.
+- A consent notice exists and actually gates Google Analytics firing until accepted.
+- Both new environment variables/setup steps are documented in the same format as the rest of the deployment checklist: name, purpose, where to get it, where to set it in Vercel.
+- Plain instructions are given for how Ines turns on Analytics/Speed Insights in the Vercel dashboard after deployment, including a note about potential plan/usage limits.

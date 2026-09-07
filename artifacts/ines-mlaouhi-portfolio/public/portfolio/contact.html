@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mlaouhi Ines</title>
+</head>
+<body>
+    <!-- header -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT ME</a>
+            <a href="projects.html">PROJECTS</a>
+            <a href="contact.html"  class="active">CONTACT</a>
+        </nav>
+     </header>
+     <!-- home section -->
+     <section class="home contact_home">
+        <div class="contact_home_content">
+            <!-- home title -->
+            <div class="home_title contact_title">
+                <h1>Contact Me</h1>
+                <h3>Let's Work Together</h3>
+                <!-- line -->
+                 <div class="contact_line"></div>
+            </div>
+        </div>
+        <div class="scroll_to_bottom" onclick="scrollToBottom()">
+            <img src="assets/scroll.svg" alt="">
+         </div>
+      </section>
+    <!-- contact form -->
+     <section class="contact_form_container">
+        <form action="https://api.web3forms.com/submit" class="contact_form" method="POST">
+            <h1 class="contact_form_title">Reach Out to Connect and Collaborate</h1>
+            <div class="form_fields">
+                <input type="hidden" name="access_key" value="770429bf-f74e-47a7-96a7-741ffb947234">
+                <input type="text" name="fullname" id="" class="input" placeholder="FULL NAME">
+                <input type="email" name="email" id="" class="input" placeholder="EMAIL">
+                <input type="text" name="subject" id="" class="input" placeholder="SUBJECT">
+                <textarea name="message" id="" class="input message" placeholder="MESSAGE"></textarea>
+                <button type="submit" class="submit CTA">SEND</button>
+            </div>
+            
+         </form>
+     </section>
+     <!-- contact section -->
+     <section class="contact projects_page_contact">
+        <div class="contact_content about_contact_content">
+            <h1 class="contact_content_title">Let's <br>Work Together</h1>
+            <div class="contact_info">
+                <button class="email info"><img src="assets/email.svg" alt="" class="contact_icon">Ines.mlaouhi.pro@gmail.com</button>
+                <button class="resume info"><img src="assets/resume.svg" alt="" class="contact_icon">Download My Resume</button>
+            </div>
+        </div>
+      </section>
+      <!-- line -->
+      <div class="sep_line"></div>
+      <!-- footer -->
+      <footer class="footer">
+        <p class="rights"><img src="assets/tn.svg" alt="" class="tn"> Mlaouhi Ines © 2024 All rights reserved.</p>
+        <div class="footer_links">
+            <a href="https://www.linkedin.com/in/ines-mlaouhi-5035621aa/?fbclid=IwAR2ePNWgMioVJjxw8cvRK5J7Cy8u1AWcp0rLDaTuuSqPTkZryLCasBpeSaY" target="_blank"><img src="assets/linkedin.svg" alt="lnkedin"></a>
+            <a href="https://www.behance.net/inesmlaouhi" target="_blank"><img src="assets/behance.svg" alt="behance"></a>
+            <a href="https://www.pinterest.fr/Ines0Mlaouhi/" target="_blank"><img src="assets/pinterest.svg" alt="pinterest"></a>
+            <a href="https://github.com/InesMlh" target="_blank"><img src="assets/github.svg" alt="github"></a>
+        </div>
+       </footer>
+       <script src="script.js"></script>
+</body>
+</html>

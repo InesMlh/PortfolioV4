@@ -1,0 +1,1 @@
+- [Portfolio preview loading](portfolio-preview-loading.md) — keep intro overlays short and non-blocking so preview verification shows the route.

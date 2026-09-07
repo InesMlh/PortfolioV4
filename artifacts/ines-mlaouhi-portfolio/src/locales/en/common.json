@@ -1,0 +1,24 @@
+{
+  "locale": "en",
+  "navigation": {
+    "home": "Home",
+    "work": "Projects",
+    "services": "Services",
+    "about": "About",
+    "trainings": "Trainings",
+    "contact": "Contact"
+  },
+  "labels": {
+    "language": "Language",
+    "backToTop": "Back to top",
+    "scrollProgress": "Page scroll progress",
+    "allProjects": "All projects"
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "subject": "Project / subject",
+    "serviceNeeded": "Service needed",
+    "message": "Message / project description"
+  }
+}

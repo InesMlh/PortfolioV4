@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Mlaouhi Ines</title>
+</head>
+<body>
+    <!-- header -->
+     <header class="header">
+        <nav class="navbar">
+            <a href="index.html"  class="active">HOME</a>
+            <a href="about.html">ABOUT ME</a>
+            <a href="projects.html">PROJECTS</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+     </header>
+    <!-- home section -->
+      <section class="home">
+        <div class="home_content">
+            <!-- home title -->
+            <div class="home_title">
+                <h2>Crafting Experiences</h2>
+                <h1>Designing Digital Delight</h1>
+            </div>
+            <!-- home CTA -->
+             <button class="CTA home" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">SEE MORE <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: ;msFilter:;"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg></button>
+             <div class="scroll_to_bottom" onclick="scrollToBottom()">
+                <img src="assets/scroll.svg" alt="">
+             </div>
+        </div>
+      </section>
+      <!-- line -->
+      <div class="sep_line"></div>
+    <!-- about me section -->
+     <section class="about_me" id="about">
+        <div class="about_me_content">
+            <div class="about_me_text">
+                <!-- about me title -->
+                <h1 class="about_me_title">Get to Know Me Better</h1>
+                <!-- about me description -->
+                <p class="about_me_description">
+                    Hello!👋<br>
+                    I’m Ines Mlaouhi, from Tunisia, currently pursuing a bachelor's degree in multimedia communication at the Higher Institute of Multimedia Arts in Manouba.
+                    With a deep interest in associative life and a passion for design, I have honed my skills and creative flair.
+                    This drives my aspiration to become a distinguished Brand and UX/UI Designer with a background in graphic design and web development.
+                    I am excited to bring my unique perspective and technical expertise to innovative projects in the design field.
+                </p>
+                <!-- about me CTA -->
+                 <a href="about.html"><button class="CTA about_me">DISCOVER MORE</button></a>
+            </div>
+            <!-- about me image -->
+             <div class="about_me_right_section">
+                <img src="assets/about_me.svg" alt="ines" class="about_me_img">
+                <div class="about_me_links">
+                    <a href="https://www.linkedin.com/in/ines-mlaouhi-5035621aa/?fbclid=IwAR2ePNWgMioVJjxw8cvRK5J7Cy8u1AWcp0rLDaTuuSqPTkZryLCasBpeSaY" target="_blank"><img src="assets/linkedin.svg" alt="lnkedin"></a>
+            <a href="https://www.behance.net/inesmlaouhi" target="_blank"><img src="assets/behance.svg" alt="behance"></a>
+            <a href="https://www.pinterest.fr/Ines0Mlaouhi/" target="_blank"><img src="assets/pinterest.svg" alt="pinterest"></a>
+            <a href="https://github.com/InesMlh" target="_blank"><img src="assets/github.svg" alt="github"></a>
+                </div>
+
+             </div>
+             
+        </div>
+     </section>
+     <div class="sep_line"></div>
+    <!-- projects section -->
+     <section class="projects">
+        <div class="projects_content">
+            <h1 class="projects_section_title">My Projects Highlight</h1>
+            <div class="filters">
+                <button class="filter active_button all" data-name="all">ALL</button>
+                <button class="filter" data-name="ui/ux">UI/UX</button>
+                <button class="filter" data-name="social media">SOCIAL MEDIA</button>
+                <button class="filter" data-name="print design">PRINT DESIGN</button>
+                <button class="filter" data-name="brand identity">BRAND IDENTITY</button>
+                <button class="filter" data-name="motion design">MOTION DESIGN</button>
+            </div>
+            <div class="projects_container  box_container">
+                <div class="projects_container_grid">
+                    <div class="projects_box box" data-name="ui/ux">
+                        <a href="saveit.html"><img src="assets/Projects/saveit.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">SAVEIT APP</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">UI/UX</p>
+                        </div>
+                    </div>
+
+                    <div class="projects_box box" data-name="motion design">
+                        <a href="fox.html"><img src="assets/Projects/Img-2.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">3D Fox Character Modeling</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Motion Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box" data-name="brand identity">
+                        <a href="viatopia.html"><img src="assets/Projects/Img-3.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">VIATOPIA</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Brand Identity</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box" data-name="social media">
+                        <a href="europcar.html"><img src="assets/Projects/Img-4.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">EUROPCAR TUNISIE</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Social Media</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box" data-name="social media">
+                        <a href="african.html"><img src="assets/Projects/Img-5.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">French-African Foundation</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Social Media</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box" data-name="print design">
+                        <a href="report.html"><img src="assets/Projects/Img-6.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">SAVEIT REPORT</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="ui/ux">
+                        <a href="viatopiaweb.html"><img src="assets/Projects/viatopiaweb.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">ViaTopia’s Website</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">UI/UX</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="ui/ux">
+                        <a href="kidowsweb.html"><img src="assets/Projects/kidows.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Kidows Platform</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">UI/UX</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="social media">
+                        <a href="trainning.html"><img src="assets/Projects/croissan.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Graphic Design Training</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Social Media</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="social media">
+                        <a href="forum.html"><img src="assets/Projects/orenda.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Forum Isamm Entreprise</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Social Media</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="social media">
+                        <a href="openhouse.html"><img src="assets/Projects/openhouse.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Open House</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Social Media</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="social media">
+                        <a href="innov.html"><img src="assets/Projects/innov.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Isamm Innov’project2.0</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Social Media</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="print design">
+                        <a href="enterprise.html"><img src="assets/Projects/forum.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Forum Isamm Entreprise</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="print design">
+                        <a href="red.html"><img src="assets/Projects/red.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Tunisian Red Crescent</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="print design">
+                        <a href="smoke.html"><img src="assets/Projects/smoke.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Smoking Effects</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="print design">
+                        <a href="medina.html"><img src="assets/Projects/medina.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Medina Of Tunis</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="print design">
+                        <a href="sponsor.html"><img src="assets/Projects/sponsor.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Sponsorship Dossier</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="brand identity">
+                        <a href="kidows.html"><img src="assets/Projects/kidowsbrand.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">KIDOWS</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Brand Identity</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="motion design">
+                        <a href="eid.html"><img src="assets/Projects/eid.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Eid Al-Adha</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Motion Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="motion design">
+                        <a href="algesic.html"><img src="assets/Projects/algesic.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">Algesic</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Motion Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="motion design">
+                        <a href="3D.html"><img src="assets/Projects/3D.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">3D axolotl Character Design</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Motion Design</p>
+                        </div>
+                    </div>
+                    <div class="projects_box box hide hide1" data-name="motion design">
+                        <a href="chair.html"><img src="assets/Projects/chair.png" style="border-radius: 1.5rem;" alt="project"></a>
+                        
+                        <div class="project_info">
+                            <div class="project_title">
+                                <h2 class="project_name">3D chair capsule</h6>
+                                <!-- line -->
+                                 <div class="line"></div>
+                            </div>
+                            <p class="type">Motion Design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- prjects CTA -->
+             <button class="CTA projects_cta" onclick="window.location.href='projects.html'">EXPLORE MORE <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: ;msFilter:;"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg></button>
+             <!-- skills -->
+              <div class="skills_container">
+                <div class="skills_container_grid">
+                    <img src="assets/figma.svg" alt="">
+                    <img src="assets/ai.svg" alt="">
+                    <img src="assets/ps.svg" alt="">
+                    <img src="assets/ae.svg" alt="">
+                    <img src="assets/pr.svg" alt="">
+                    <img src="assets/au.svg" alt="">
+                    <img src="assets/fl.svg" alt="">
+                    <img src="assets/3d.svg" alt="">
+                    <img src="assets/unity.svg" alt="">
+                    <img src="assets/html.svg" alt="">
+                    <img src="assets/css.svg" alt="">
+                    <img src="assets/js.svg" alt="">
+                  </div>
+              </div>
+        </div>
+     </section>
+     <!-- contact section -->
+      <section class="contact">
+        <div class="contact_content">
+            <h1 class="contact_content_title">Let's <br>Work Together</h1>
+            <div class="contact_info">
+                <button class="email info" id="emailBtn"><img src="assets/email.svg" alt="" class="contact_icon">Ines.mlaouhi.pro@gmail.com</button>
+                <button class="resume info"><img src="assets/resume.svg" alt="" class="contact_icon">Download My Resume</button>
+            </div>
+        </div>
+      </section>
+            <!-- line -->
+            <div class="sep_line"></div>
+      <!-- footer -->
+       <footer class="footer">
+        <p class="rights"><img src="assets/tn.svg" alt="" class="tn"> Mlaouhi Ines © 2024 All rights reserved.</p>
+        <div class="footer_links">
+            <a href="https://www.linkedin.com/in/ines-mlaouhi-5035621aa/?fbclid=IwAR2ePNWgMioVJjxw8cvRK5J7Cy8u1AWcp0rLDaTuuSqPTkZryLCasBpeSaY" target="_blank"><img src="assets/linkedin.svg" alt="lnkedin"></a>
+            <a href="https://www.behance.net/inesmlaouhi" target="_blank"><img src="assets/behance.svg" alt="behance"></a>
+            <a href="https://www.pinterest.fr/Ines0Mlaouhi/" target="_blank"><img src="assets/pinterest.svg" alt="pinterest"></a>
+            <a href="https://github.com/InesMlh" target="_blank"><img src="assets/github.svg" alt="github"></a>
+        </div>
+       </footer>
+       <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "locale": "de",
+  "navigation": {
+    "home": "Startseite",
+    "work": "Projekte",
+    "services": "Leistungen",
+    "about": "Über mich",
+    "trainings": "Workshops",
+    "contact": "Kontakt"
+  },
+  "labels": {
+    "language": "Sprache",
+    "backToTop": "Nach oben",
+    "scrollProgress": "Seitenfortschritt",
+    "allProjects": "Alle Projekte"
+  },
+  "contact": {
+    "name": "Name",
+    "email": "E-Mail",
+    "subject": "Projekt / Thema",
+    "serviceNeeded": "Gesuchte Leistung",
+    "message": "Nachricht / Projektbeschreibung"
+  }
+}

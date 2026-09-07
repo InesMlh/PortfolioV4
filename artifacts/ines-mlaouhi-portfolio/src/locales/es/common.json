@@ -1,0 +1,24 @@
+{
+  "locale": "es",
+  "navigation": {
+    "home": "Inicio",
+    "work": "Proyectos",
+    "services": "Servicios",
+    "about": "Sobre mí",
+    "trainings": "Formación",
+    "contact": "Contacto"
+  },
+  "labels": {
+    "language": "Idioma",
+    "backToTop": "Volver arriba",
+    "scrollProgress": "Progreso de la página",
+    "allProjects": "Todos los proyectos"
+  },
+  "contact": {
+    "name": "Nombre",
+    "email": "Email",
+    "subject": "Proyecto / asunto",
+    "serviceNeeded": "Servicio necesario",
+    "message": "Mensaje / descripción del proyecto"
+  }
+}

@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Ines Mlaouhi Portfolio"
+description = "A personal portfolio for Ines Mlaouhi, presenting graphic design, brand identity, UX/UI, motion, and visual communication work with multilingual navigation and project detail pages."
+version = "1.0.0"
+id = "artifacts/ines-mlaouhi-portfolio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23145
+
+[services.development]
+run = "pnpm --filter @workspace/ines-mlaouhi-portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ines-mlaouhi-portfolio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ines-mlaouhi-portfolio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23145"
+BASE_PATH = "/"

@@ -1,0 +1,70 @@
+PROMPT 1 of 3 — FIX REGRESSIONS: Preloader, Broken Forms, Animation Containment, Remaining Rectangles
+
+Paste this into Replit first. This addresses regressions (things that were working and broke) plus a few new fixes. Prompts 2 and 3 will follow separately after this one is done.
+
+1. THE OPENING PRELOADER ANIMATION IS GONE — RESTORE IT
+
+The intro sequence (words appearing, then Ines's name with a small scrolling element above it, then the site opening) has been lost/regressed somewhere in recent changes. Restore it exactly as previously implemented:
+
+The word sequence, followed by the name reveal, followed by the site content appearing.
+Proper time separation between each stage (word → pause → word → pause → word → pause → name reveal → pause → content) — not rushed, but also not dragged out.
+This should play on a fresh load of any page, not just the homepage, per the earlier requirement.
+
+Be careful: only restore/fix this specific piece. Do not modify or "improve" anything else on the site as a side effect while doing this — Ines has explicitly asked that unrelated things not be touched.
+
+2. ALL FORMS ARE CURRENTLY NON-FUNCTIONAL — FIX EVERY ONE
+
+Every form on the site (main Contact form, Services page inline form, Trainings page contact form) is currently not working at all — this needs a real fix, not a partial one:
+
+Confirm the actual form-submission mechanism end-to-end (this should already be a proper backend/service integration per the earlier request to stop using a mailto-based approach — confirm that integration is actually in place and functioning, not just visually present).
+Test each form by actually submitting it and confirming Ines would receive the message in her real inbox.
+There is also a bug where a form displays a message about "correcting the highlighted field" even when no field is actually highlighted/invalid — find and fix this false-validation-error bug so error states only appear when a field genuinely fails validation.
+On the Services page form specifically, add a Subject field (what the email should be about) — this field is currently missing from that form.
+Confirm the "Service Needed" dropdown on every relevant form still includes Training/Workshops as an option (from the previous request).
+3. BACKGROUND ANIMATIONS — STOP CONTAINING THEM IN BOXES, FIX EDGE POSITIONING SITE-WIDE
+
+This is the same underlying bug reported before, now confirmed to affect many pages, not just one or two: decorative circle/shape animations are currently boxed inside inner containers instead of spanning/positioned relative to the actual page background, and several of the "half-cut" circles are sitting in the wrong position — not flush against the true left or right edge of the viewport as intended.
+
+Fix this properly, site-wide, in one pass:
+
+Identify every page using this decorative circle/shape pattern.
+For each one, move the shape's positioning and clipping so it is placed relative to the full page/viewport background, not nested inside a narrower content container that's clipping or repositioning it incorrectly.
+For every shape that's meant to be dramatically cut off at a screen edge, confirm it sits with genuinely zero gap against that actual edge (left or right, whichever is intended for that instance) — not floating inward from the edge, and not centered so it's cut through the middle.
+Do this as a full site-wide sweep and confirm each page individually — this bug has now persisted across several fix attempts because it was likely fixed in one place without checking whether the same pattern was duplicated (and therefore separately broken) elsewhere.
+4. REMOVE ALL REMAINING RECTANGULAR SHAPES
+
+The site is meant to be fully round/circular in its shape language (buttons, cards, decorative elements) — do a fresh, thorough sweep for any remaining hard-edged rectangular elements anywhere on the site (including any newly added components from recent passes, like the pagination controls or the Services page form) and round them consistently with the rest of the established design system.
+
+5. MORE ANIMATION VARIETY — ADDITIONAL OBJECTS, NOT JUST CIRCLES
+
+In addition to fixing the existing circle animations above, add genuinely more variety: additional moving/decorative elements beyond circles (as previously requested — shapes like soft rounded squares, rings, or abstract design elements moving independently in the background) across more pages, to make the site feel more visually engaging and alive overall.
+
+6. PROJECTS PAGE — FIX THE PREVIOUS/NEXT PAGINATION BUTTONS
+
+On the all-projects listing page, the Previous/Next pagination controls currently render as plain text sitting too close to the project grid above them — they don't read as buttons at all and are easy to miss entirely. Fix this:
+
+Style them as clear, visible buttons — using the site's unified button style (rounded, filled/bordered, consistent sizing) so they're unmistakably clickable controls, not plain text.
+Add clear spacing between the project grid and this pagination control row, so they don't feel cramped against each other.
+Layout: place Next on the right side at the bottom of the page; once the user has advanced past the first page, show Previous on the left side, opposite Next, so the two controls sit at opposite ends of the same row.
+7. TRAININGS PAGE — ADD A TEXT FIELD UNDER THE "GRAPHIC DESIGN TRAINING" TITLE
+
+Directly underneath the "Graphic Design Training" title on this page, add a plain text field/short paragraph area (a simple line or two of introductory text — real content, not a placeholder in the final version, but reasonable draft copy is fine for now since Ines can refine it later).
+
+8. REMOVE THE ANALYTICS/PRIVACY NOTICE BANNER
+
+Note on this one: removing this banner does carry a real trade-off worth being aware of — if Google Analytics is being used with identifying cookies, a consent notice is generally how sites stay compliant with EU/UK privacy rules (GDPR) for visitors from those regions. That said, per Ines's explicit instruction:
+
+Remove the visible notification banner about analytics/privacy — it should not appear or block any part of the page for any visitor.
+To keep the compliance trade-off reasonable without a visible banner, prefer relying primarily on Vercel Analytics (which is generally cookie-less and doesn't require consent gating) rather than Google Analytics with identifying cookies. If Google Analytics is still wanted, configure it in its most privacy-conscious mode (IP anonymization, no ad-personalization signals) to reduce — though not eliminate — the compliance gap from removing the banner, and note this trade-off back to Ines plainly so it's her informed decision, not a silent omission.
+9. FINAL VERIFICATION FOR THIS PASS
+Preloader/opening animation is back, properly timed, on every page's fresh load.
+Every form on the site (Contact, Services, Trainings) actually delivers a submission to Ines's inbox — tested, not assumed.
+The false "highlighted field" error message no longer appears when nothing is actually invalid.
+Services page form now has a Subject field.
+No decorative shape animation is boxed inside an inner container that's clipping it incorrectly — checked page by page.
+Every edge-cut circle sits flush against its actual screen edge, on every page using this pattern.
+No rectangular shapes remain anywhere on the site.
+Pagination Previous/Next controls are styled as clear buttons with proper spacing from the content above them.
+Trainings page has a new text field under its title.
+The analytics/privacy notification banner is gone from every page.
+Nothing else on the site was changed beyond what's listed above.

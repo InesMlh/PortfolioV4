@@ -1,0 +1,61 @@
+# REFINEMENT PROMPT — Remove Rectangular Background Shapes, Fix Preloader Opacity, Fix Circle Positioning Site-Wide, Wire Formspree
+
+> Paste this into Replit before moving on to the GitHub push and documentation prompts.
+
+---
+
+## 1. REMOVE THE RECTANGULAR-LOOKING BACKGROUND SHAPES — DON'T JUST FIX THEM, REMOVE THEM
+
+Some of the decorative background elements (from the last round, which added "rings, rounded squares, and diamond motion elements" alongside circles) are currently rendering as visible **rectangles** — either the shapes themselves have hard corners, or they have a visible rectangular bounding box/container around them. This does not match the site's fully rounded shape language and is not wanted in any form.
+
+- Audit every decorative background element on every page.
+- **Remove entirely** any shape that renders as a rectangle or has a visible rectangular container/edge around it — do not attempt to just round its corners, remove it outright.
+- What should remain: only genuinely circular/rounded decorative elements (circles, rings) with no visible bounding box of any kind.
+- Confirm this by checking every page that uses these background elements (Homepage, About Me, Services, Projects, Trainings) individually.
+
+---
+
+## 2. REMOVE BACKGROUND SHAPES THAT STAY STATIC/FIXED WHILE SCROLLING
+
+Separately from the rectangle issue: some background decorative shapes are currently pinned in a fixed position and don't move/respond at all while scrolling, which looks static and out of place next to the shapes that do animate correctly. Remove any decorative background element that is purely fixed with no scroll-linked behavior — every decorative shape that remains should participate in the scroll-linked animation system (drifting, scaling, or fading as the user scrolls), not sit frozen in place.
+
+---
+
+## 3. PRELOADER — MAKE THE BACKGROUND OPAQUE, NOT TRANSLUCENT
+
+The last update intentionally made the preloader's background translucent so page previews wouldn't look blank — **reverse this specific choice.** Ines does not want to see the website underneath the preloader while it's playing. Change the preloader's background to a solid/high-opacity color (matching the site's dark background tone) so that during the word sequence → name reveal → tagline slide, the actual page content underneath is not visible at all. Only once the full preloader sequence finishes should the real page content be revealed. Keep everything else about the preloader (timing, sequence, stages) exactly as already fixed — this is an opacity/background change only.
+
+---
+
+## 4. HERO-STYLE CIRCLE ANIMATIONS — FIX POSITIONING ON EVERY PAGE THAT HAS ONE, NOT JUST THE HOMEPAGE
+
+The homepage's hero circle (which scales down on scroll-down and back up on scroll-up) has the same underlying issue previously identified elsewhere: it's currently constrained by an inner section container instead of being positioned relative to the full viewport/page background, which breaks the intended "bleeding off/through the screen" effect. This same issue needs to be fixed everywhere this circle pattern is used, not only on the homepage:
+
+- **About Me page** — the hero-section circle with the same scroll-linked scale effect.
+- **Services page** — its circle decorative elements.
+- **Projects page** — its circle decorative elements.
+- **Trainings page** — its circle decorative elements.
+
+For every one of these: reposition and re-parent the circle element so it's positioned relative to the actual viewport/full page background (not nested inside a narrower content section that's constraining or clipping it unnaturally), matching whatever the correct, full-bleed technique ends up being for the homepage's version. Verify each page individually after the fix — do not assume that fixing the pattern in one shared component automatically fixes every instance, since this has been the recurring failure mode in previous passes.
+
+---
+
+## 5. WIRE UP THE REAL FORMSPREE ENDPOINT
+
+The Formspree endpoint is now available: `https://formspree.io/f/mrpgyrwb`
+
+1. Set this as the `VITE_FORMSPREE_ENDPOINT` environment variable/secret in Replit (if not already set to this value).
+2. Restart the app so the change takes effect.
+3. Actually submit one real test message through **each** of the three forms — Contact, Services, and Trainings — and confirm each one arrives in Ines's inbox.
+4. Confirm each submission also appears in the Formspree dashboard's Submissions tab.
+5. Report back explicitly that all three forms were tested and confirmed working end-to-end — not just that the endpoint was added.
+
+---
+
+## 6. FINAL VERIFICATION FOR THIS PASS
+
+- No rectangular shapes or rectangular bounding boxes remain in any background decorative element, on any page.
+- No background decorative shape is static/fixed with zero scroll-linked motion.
+- The preloader background is now opaque — no page content is visible through it during the intro sequence.
+- The scroll-linked scaling circle is correctly full-bleed (not container-constrained) on the Homepage, About Me, Services, Projects, and Trainings pages — each checked individually.
+- All three forms (Contact, Services, Trainings) were actually tested with a real submission and confirmed delivered to Ines's inbox using the live Formspree endpoint.

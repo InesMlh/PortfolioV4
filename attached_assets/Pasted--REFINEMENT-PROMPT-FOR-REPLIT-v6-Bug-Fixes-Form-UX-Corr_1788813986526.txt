@@ -1,0 +1,161 @@
+# REFINEMENT PROMPT FOR REPLIT (v6) — Bug Fixes, Form/UX Corrections, Animation Variety, Deployment Readiness
+
+> Paste this into Replit along with the template folder(s) again for animation reference.
+
+---
+
+## 1. HOMEPAGE — "GRAPHIC DESIGN TRAINING" TEASER TITLE IS BROKEN
+
+The title in this homepage section is currently rendering with visible code/raw markup instead of clean text — this is a real bug (likely an unescaped variable, a broken translation key showing its raw key name instead of the translated string, or a leftover template literal). Find and fix the underlying cause so a clean heading renders correctly, and replace it with a real, simple heading (something clearly indicating she offers training/workshops — exact final wording can still be refined later, but it must render as plain readable text with no code artifacts visible).
+
+---
+
+## 2. FOOTER — REMOVE THE DUPLICATE LANGUAGE SELECTOR, MAKE IT BIGGER
+
+1. The language/translation control should exist **only** in the top nav (as already implemented) — remove the duplicate language selector currently also present in the footer.
+2. The footer overall is still too small/hard to see. Increase its text size and overall visual presence (this is in addition to, not instead of, the full-width and legibility fixes from the previous pass — confirm those are still holding, and go further on sizing specifically).
+
+---
+
+## 3. MORE BACKGROUND ANIMATION — STILL NEEDED SITE-WIDE
+
+Still not enough animation across the site. See Section 10 below for a more specific, expanded set of requirements — treat this as the same standing priority as previous passes, now with additional direction.
+
+---
+
+## 4. HOMEPAGE — REDUCE SPACE BETWEEN HERO SECTION AND NAV BAR
+
+There's currently too much vertical space between the top nav bar and the hero section content directly below it, on the homepage specifically. Reduce this gap only — do not change anything else about the hero section's layout, sizing, or content while doing this.
+
+---
+
+## 5. GLOBAL BUTTON CONSISTENCY — ONE SIZE SYSTEM FOR EVERY BUTTON
+
+Every button across the entire site must share one consistent size system: the same height, font size, padding scale, and border-radius — so any two buttons anywhere on the site look like they belong to the same family regardless of their label length. A button with a short label (e.g., "Send") and a button with a longer label (e.g., "View All Projects") should have identical height and padding rhythm, with only the width adjusting naturally to fit the text — never stretched disproportionately wide for short text, and never so tight that longer text feels cramped. Audit every button on every page against this single standard.
+
+---
+
+## 6. CIRCLE/CUT-OFF DECORATIVE SHAPES — FIX THE EDGE ALIGNMENT EVERYWHERE (RECURRING BUG, NOW ON MULTIPLE PAGES)
+
+The same underlying bug is now visible on the About Me page and the Trainings page: a decorative circle that's meant to be dramatically cut off by the edge of the screen instead has a visible gap between the circle and the actual edge, or is positioned so it's cut through the middle rather than at an edge — in both cases, the intended "popping out from the side" effect isn't happening.
+
+**Fix the rule everywhere this pattern is used, not just on the pages currently reported:** whichever screen edge (left or right) a decorative circle is meant to bleed off of, it must sit with **zero gap** against that actual viewport edge, clipped exactly at the edge — not floating with visible space between the shape and the edge, and not centered so it gets cut through its middle instead of at its side. Go through every page using this decorative pattern (Homepage, About Me, Trainings, and any other page using it) and correct the positioning/clipping container for each instance individually — confirm each one visually rather than assuming a shared component fix propagates correctly everywhere.
+
+Also on the Trainings page specifically: there is a stray decorative line rendered on top of the circle shapes in that page's hero-equivalent section — remove that line entirely.
+
+---
+
+## 7. "LET'S MAKE SOMETHING VISIBLE" SECTION — FILL THE EMPTY SIDE ON EVERY PAGE THAT HAS IT
+
+Wherever this section appears across the site, there's empty space on the side opposite the text (previously flagged on Contact; confirm it's addressed everywhere this section is used, not just Contact). Add an animated decorative element filling that empty side consistently on every page that includes this section.
+
+---
+
+## 8. ALL FORMS — SERVICE DROPDOWN MUST INCLUDE TRAINING
+
+On every form with a "Service Needed" dropdown (main Contact form, Services page inline form), the option list must include **all** of her actual services **plus Training/Workshops** as its own selectable option — someone reaching out may specifically want to book a training, so it needs to be a first-class option in that dropdown, not missing.
+
+---
+
+## 9. SERVICES PAGE FORM — FIX THE DROPDOWN'S WIDTH
+
+The "Service Needed" dropdown/select box on the Services page's inline form is currently cut short, leaving empty space beside it in its row. Make it stretch to fill the full width of its grid cell, matching the width of the other fields in that row.
+
+---
+
+## 10. ALL FORMS — FIX REQUIRED-FIELD ASTERISK PLACEMENT
+
+The asterisk (or other required-field indicator) currently appears in the wrong place — apparently detached from or misaligned with the field it belongs to. Fix this across every form on the site so the asterisk sits directly next to that field's **label/title** (e.g., "Name*"), not floating separately or appearing inside the input box itself.
+
+---
+
+## 11. ALL FORMS — STOP USING A MAILTO/EMAIL-CLIENT-OPENING APPROACH
+
+Currently, submitting a form apparently opens the visitor's own email client (Outlook/Gmail) to send the message — this is not the intended behavior and creates friction for anyone filling out the form. Replace this with a proper backend form-submission service so that when someone submits any form on the site, **Ines receives the message directly in her own inbox immediately**, with no action required from the person filling out the form. Use a service suited to a static/serverless-deployed site (e.g., Formspree, Web3Forms, Getform, or an EmailJS-based setup, or a small serverless function if the hosting setup supports it) — implement this for every form on the site (main Contact, Services inline form, Trainings contact form). If any setup step requires Ines to create an account, generate an API key/form endpoint, or add an environment variable, **list exactly what she needs to do**, step by step, in plain language.
+
+---
+
+## 12. PROJECTS PAGE — REMOVE THE FILTER/GRID DIVIDER LINE
+
+There's currently a visible dividing line between the category filter bar and the project grid below it. Remove this line — no separator is needed there.
+
+---
+
+## 13. PROJECTS PAGE — ENSURE PAGINATION IS ACTUALLY DEMONSTRABLE
+
+Add enough additional placeholder projects to the "All Projects" page specifically (this refers to the full projects listing page, not any individual project's detail page) so that Previous/Next pagination controls appear and genuinely move between multiple real pages of results — this needs to be visibly testable, not just present with nothing to page through.
+
+---
+
+## 14. TRAININGS PAGE — RESTRUCTURE THE TOP SECTION, ADD AN APPROACH SECTION
+
+1. Move the vertical video placeholder (for the Instagram Reel) to the **top of the page, next to the "Graphic Design Training" title**, replacing the paragraph text currently occupying that spot (the "a learning experience for people building confidence with graphic design..." text).
+2. Add a **new text section, positioned before the training image gallery**, describing how Ines approaches/runs her trainings — real content in her voice, giving visitors a sense of what working with her on a training/workshop is like. (The paragraph displaced from the top slot in step 1 can be reused/adapted here if it fits.)
+
+---
+
+## 15. MORE ANIMATION VARIETY — BEYOND CIRCLES, AND SCROLL-LINKED SCALE EFFECTS
+
+The site still needs meaningfully more motion, and it shouldn't be only circles repeated everywhere. Using the Ashley template's own animation patterns as the technical reference:
+
+1. Introduce a wider variety of background decorative shapes beyond circles — e.g., a simple cube/square shape and a circle both drifting/moving independently and somewhat unpredictably in the background of sections across different pages, so the motion feels more alive and less repetitive.
+2. Add scroll-linked scale animation: as the user scrolls down, have certain background decorative elements shrink slightly; as they scroll back up, have those elements grow back — a subtle, continuous scroll-tied effect (this exact behavior exists in the Ashley template's own scroll-scale mechanism — reuse that approach/timing rather than inventing a new one).
+3. Apply this expanded animation variety across all pages, not concentrated on just one or two.
+
+---
+
+## 16. CONTENT BALANCE ACROSS PAGES
+
+Review the copy and content density across the site: some pages should lean more visual (more imagery, less text) and others should lean more text-driven, depending on what that page is for. Additionally, review the site's overall messaging to make sure it reads as more client-facing and persuasive — framed around the value/outcome for a potential client or collaborator, and clearly demonstrating design and UX/UI thinking — rather than reading as purely a personal showcase. Use only real, honest content already established from her portfolio/bio — do not fabricate claims, statistics, or client outcomes while doing this.
+
+---
+
+## 17. PRE-DEPLOYMENT TECHNICAL REPORT (REQUIRED BEFORE THIS IS CONSIDERED DONE)
+
+Ines previously had trouble deploying an earlier version of this project to Vercel. Before finishing this pass, provide a clear written report covering:
+
+1. **Exact tech stack**: which framework/meta-framework this project is built with (e.g., Next.js, Vite + React, Astro, plain static HTML/CSS/JS, etc.), and which version.
+2. **Exact Vercel deployment settings** she should use: Framework Preset, Root Directory, Build Command, Output Directory, and Install Command — spelled out explicitly, not "Vercel will detect it automatically," since that's where the previous attempt reportedly went wrong.
+3. **Any environment variables/secrets** required (including the form-submission service from Section 11) — name, purpose, where she gets the value, and where to enter it in Vercel.
+4. Confirm there is nothing in the current setup that depends on a Replit-specific feature, a persistent backend server, or local file storage that wouldn't work in Vercel's hosting model — flag anything that does, with a proposed fix.
+5. A general code-quality/bug sweep: confirm no console errors, no broken imports, no broken links or images, and that the project builds successfully in a clean environment before she attempts deployment.
+
+---
+
+## 18. IMAGE/ASSET INSTRUCTIONS — MAKE THIS FULLY SELF-SERVE FOR INES
+
+Ines will be adding all real project images and videos herself, manually, without help. Produce a clear, complete reference (a written list or a small `IMAGES-NEEDED.md`-style document in the project) covering, **for every image and video placeholder across the entire site**:
+
+- What it's for (e.g., "cover image for project [name]," "About Me portrait," "Training gallery image #3").
+- The **exact file path/folder** it needs to go in.
+- The **exact filename** it should be saved as (including file extension).
+- The **exact recommended dimensions and aspect ratio**.
+- The recommended file type/format (e.g., JPG, PNG, WebP, MP4).
+
+This must be specific enough that she can rename and drop in a file without guessing. Also include, separately, a short plain-language explanation of **exactly what to do when adding a brand-new project in the future**: which file/folder to duplicate or edit, which fields to fill in, and where its images should go — so this workflow doesn't require her to figure out the code structure herself.
+
+---
+
+## 19. TRANSLATION — FULL REGRESSION CHECK
+
+After all of the above changes, re-verify that the language switcher still works correctly and completely on **every page** — switching language must translate the entire visible page's content, and this must hold true after all the structural/content changes made in this pass (moving sections, adding new text like the Trainings approach section, the fixed training title, etc. — anything new added in this pass must also be wired into the translation system, not left hardcoded in one language).
+
+---
+
+## 20. FINAL VERIFICATION FOR THIS PASS
+
+Before calling this complete, confirm explicitly:
+- Homepage training teaser title renders as clean text, no code visible.
+- Footer has no duplicate language selector and is now clearly bigger/more legible.
+- Every button site-wide follows one consistent size system.
+- Every decorative "cut-off" circle across every page sits flush against its actual edge with zero gap, individually verified per page.
+- The stray line over the circles on the Trainings page is gone.
+- Every "Let's Make Something Visible" instance has its empty side filled with animation.
+- Every service dropdown includes Training as an option.
+- Required-field asterisks sit next to field labels on every form.
+- Every form delivers directly to Ines's email without opening the visitor's own email client.
+- Projects page filter/grid divider line is gone, and pagination is demonstrable with real placeholder content.
+- Trainings page top section shows the vertical video placeholder next to the title, with a new "how I work" text section before the image gallery.
+- New shape/scroll-scale animation variety is present across multiple pages, not just circles.
+- Translation still works fully, on every page, including anything new added in this pass.
+- The pre-deployment technical report and the image/asset instructions document both exist and are complete.
