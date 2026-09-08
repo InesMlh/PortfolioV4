@@ -1,2 +1,1 @@
 - [Portfolio preview loading](portfolio-preview-loading.md) — keep intro overlays short and non-blocking so preview verification shows the route.
-- [GitHub repository uploads](github-repository-uploads.md) — initialize empty repos first and pace Git Data API blob uploads to avoid connector throttling.
