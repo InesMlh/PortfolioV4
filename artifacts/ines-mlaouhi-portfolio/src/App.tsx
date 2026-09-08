@@ -71,7 +71,7 @@ function IntroPreloader() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const timer = window.setTimeout(() => setVisible(false), reducedMotion ? 350 : 700);
+    const timer = window.setTimeout(() => setVisible(false), reducedMotion ? 350 : 3600);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -335,7 +335,7 @@ export function Footer() {
         <div className="footer-cta">
           <span className="section-kicker">{copy.contactKicker}</span>
           <h2><Markup>{copy.contactTitle}</Markup></h2>
-          <Link href="/contact" className="template-button"><span>{copy.startConversation}</span><ArrowRight size={17} /></Link>
+          <Link href="/contact" target="_blank" rel="noopener noreferrer" className="template-button"><span>{copy.startConversation}</span><ArrowRight size={17} /></Link>
         </div>
         <div className="footer-bottom">
           <div className="footer-identity"><strong>Ines Mlaouhi</strong><a href="mailto:ines.mlaouhi.pro@gmail.com">ines.mlaouhi.pro@gmail.com</a></div>
@@ -397,7 +397,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const { language, copy } = useLocale();
   const displayProject = localizedProject(project, language, copy);
   return (
-    <Link href={`/work/${project.slug}`} className={`project-card project-${project.layoutType}`} data-testid={`card-project-${project.slug}`}>
+    <Link href={`/work/${project.slug}`} target="_blank" rel="noopener noreferrer" className={`project-card project-${project.layoutType}`} data-testid={`card-project-${project.slug}`}>
       <div className="project-card-media"><PlaceholderVisual project={displayProject} /></div>
       <div className="project-card-meta">
         <div><h3>{displayProject.title}</h3><span>{displayProject.category}</span></div>
@@ -429,7 +429,7 @@ function Home() {
           <h1>{copy.heroPrefix} <span className="thin">{copy.heroArticle}</span><br /><span key={heroWord} className="hero-word" aria-live="polite">{copy.heroWords[heroWord]}</span> <span className="thin">{copy.heroWorld}</span><br /><span className="thin">{copy.heroEnding}</span></h1>
           <div className="banner-lower">
             <p>{copy.heroBody}</p>
-            <Link href="/work" className="template-button"><span>{copy.exploreWork}</span><ArrowRight size={17} /></Link>
+            <Link href="/work" target="_blank" rel="noopener noreferrer" className="template-button"><span>{copy.exploreWork}</span><ArrowRight size={17} /></Link>
           </div>
         </div>
       </section>
@@ -437,14 +437,14 @@ function Home() {
       <section className="discover-section ambient-section page-container section-space">
         <div className="two-column">
           <h2><Markup>{copy.discoverTitle}</Markup></h2>
-          <div className="section-copy"><p>{copy.discoverBody}</p><Link href="/about" className="template-button"><span>{copy.discover}</span><ArrowRight size={17} /></Link></div>
+          <div className="section-copy"><p>{copy.discoverBody}</p><Link href="/about" target="_blank" rel="noopener noreferrer" className="template-button"><span>{copy.discover}</span><ArrowRight size={17} /></Link></div>
         </div>
       </section>
 
       <div className="template-marquee" aria-label={copy.marquee}><div className="template-marquee-track">{[0, 1, 2, 3].map((index) => <span className="template-marquee-item" key={index} aria-hidden={index > 0}>{copy.marquee}</span>)}</div></div>
 
       <section className="work-section ambient-section page-container section-space">
-        <div className="section-heading"><div className="section-heading-copy"><h2>{copy.selectedWork}</h2><span>{copy.selectedWorkNote.split('<br />').map((line) => <span key={line}>{line}<br /></span>)}</span></div><Link href="/work" className="template-button template-button-small"><span>{copy.seeAll}</span><ArrowRight size={16} /></Link></div>
+        <div className="section-heading"><div className="section-heading-copy"><h2>{copy.selectedWork}</h2><span>{copy.selectedWorkNote.split('<br />').map((line) => <span key={line}>{line}<br /></span>)}</span></div><Link href="/work" target="_blank" rel="noopener noreferrer" className="template-button template-button-small"><span>{copy.seeAll}</span><ArrowRight size={16} /></Link></div>
         <ProjectGrid items={featured} />
       </section>
 
@@ -455,7 +455,7 @@ function Home() {
 
       <section className="homepage-training ambient-section page-container section-space two-column">
         <PlaceholderVisual project={projects.find((project) => project.slug === 'graphic-design-training') ?? projects[0]} variant="gallery" />
-         <div className="section-copy"><h2>{copy.trainingLabel}</h2><p>{copy.trainingBody}</p><Link href="/trainings" className="template-button"><span>{copy.discover}</span><ArrowRight size={17} /></Link></div>
+         <div className="section-copy"><h2>{copy.trainingLabel}</h2><p>{copy.trainingBody}</p><Link href="/trainings" target="_blank" rel="noopener noreferrer" className="template-button"><span>{copy.discover}</span><ArrowRight size={17} /></Link></div>
       </section>
 
       <section className="blog-section ambient-section page-container section-space">
