@@ -1,1 +1,2 @@
 - [Portfolio preview loading](portfolio-preview-loading.md) — keep intro overlays short and non-blocking so preview verification shows the route.
+- [GitHub tree uploads](github-repository-uploads.md) — GitHub tree deletion entries require explicit mode and type fields when mirroring a workspace.
