@@ -124,17 +124,13 @@ This is the shorter media-only reference. `GUIDE.md` is the fuller explanation o
 
 ### Important current behaviour
 
-The current React site intentionally displays labeled placeholders until a media path is connected to the relevant project data.
-
-For **project media**, saving files with the names below and adding their paths to the matching project record is the supported workflow.
-
-For the **About portrait**, **Attention Insight article image**, and **training Reel**, the current page components still render a placeholder directly. The reserved paths and filenames are documented below, but saving those files alone will not replace those three placeholders until the corresponding component is connected.
+The current React site displays a labeled placeholder only when the requested media file is genuinely missing. Every documented image and video path is checked automatically, so uploading a correctly named file is sufficient. The real media replaces the placeholder without a manual toggle or an additional code edit.
 
 Use these general rules:
 
 - Put new React-site media inside `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/`.
 - Use lowercase filenames for new media.
-- Prefer **WebP** for images, **PNG** when transparency is needed, and **MP4/H.264** for video.
+- Use **JPEG (`.jpg`)** for images, **PNG** only when transparency is needed, and **MP4/H.264** for video.
 - Keep the recommended aspect ratio. The dimensions are recommendations for sharp display, not strict upload limits.
 - In a data file, public paths start with `/portfolio/assets/`, not `public/`.
 
@@ -142,32 +138,32 @@ Use these general rules:
 
 | Visual | Exact folder | Exact filename | Recommended size and ratio | Format | Current note |
 | --- | --- | --- | --- | --- | --- |
-| About Me portrait | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/` | `ines-portrait.webp` | 1200 × 1500 px, 4:5 | WebP | Reserved filename; the About component currently renders a portrait placeholder directly. |
-| Attention Insight article image | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/` | `attention-insight.webp` | 1600 × 1000 px, 8:5 | WebP | Reserved filename; the homepage article card currently uses a project placeholder. |
-| Training gallery image 1 | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/training/` | `training-01.webp` | 1600 × 1000 px, 8:5 | WebP | The current training gallery is data-ready through the training project's `gallery` field. |
-| Training gallery image 2 | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/training/` | `training-02.webp` | 1600 × 1000 px, 8:5 | WebP | The current training gallery is data-ready through the training project's `gallery` field. |
-| Training gallery image 3 | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/training/` | `training-03.webp` | 1600 × 1000 px, 8:5 | WebP | The current training gallery is data-ready through the training project's `gallery` field. |
-| Training / Instagram Reel | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/training/` | `training-reel.mp4` | 1080 × 1920 px, 9:16 | MP4, H.264 | Reserved filename; the current Trainings page renders a vertical video placeholder and does not yet read a video field. |
+| About Me portrait | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/` | `ines-portrait.jpg` | 1200 × 1500 px, 4:5 | JPEG | Uploading this exact file automatically replaces the About portrait placeholder. |
+| Attention Insight article image | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/` | `attention-insight.jpg` | 1600 × 1000 px, 8:5 | JPEG | Uploading this exact file automatically replaces the article placeholder. |
+| Training gallery image 1 | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/training/` | `training-01.jpg` | 1600 × 1000 px, 8:5 | JPEG | Uploading this exact file automatically replaces training gallery placeholder 1. |
+| Training gallery image 2 | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/training/` | `training-02.jpg` | 1600 × 1000 px, 8:5 | JPEG | Uploading this exact file automatically replaces training gallery placeholder 2. |
+| Training gallery image 3 | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/training/` | `training-03.jpg` | 1600 × 1000 px, 8:5 | JPEG | Uploading this exact file automatically replaces training gallery placeholder 3. |
+| Training / Instagram Reel | `artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/training/` | `training-reel.mp4` | 1080 × 1920 px, 9:16 | MP4, H.264 | Uploading this exact file automatically replaces the vertical video placeholder. |
 
 ### Project media convention
 
 Every project can use these five filenames inside its own folder:
 
 ```text
-artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/cover.webp
-artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/gallery-01.webp
-artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/gallery-02.webp
-artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/gallery-03.webp
+artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/cover.jpg
+artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/gallery-01.jpg
+artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/gallery-02.jpg
+artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/gallery-03.jpg
 artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<project-slug>/video.mp4
 ```
 
 Use:
 
-- `cover.webp`: 1600 × 1000 px, 8:5. Used on the homepage selected-work cards and the Projects archive.
-- `gallery-01.webp` through `gallery-03.webp`: 1920 × 1200 px, 8:5. Used by the project-detail gallery and lightbox.
+- `cover.jpg`: 1600 × 1000 px, 8:5. Used on the homepage selected-work cards and the Projects archive.
+- `gallery-01.jpg` through `gallery-03.jpg`: 1920 × 1200 px, 8:5. Used by the project-detail gallery and lightbox.
 - `video.mp4`: 1920 × 1080 px, 16:9 for a normal motion reel, or 1080 × 1920 px, 9:16 for a vertical social video.
 
-The current React `PlaceholderVisual` reads `coverImage` for cover cards and the first item in `gallery` for detail/gallery visuals. The `video` field exists in the project data type, but the current project-detail component still shows a motion placeholder rather than rendering the video file. Add the video path for future use, but do not expect the file to appear until that component is wired.
+The current React media system automatically assigns these JPG and MP4 paths to every project. It checks each path before rendering: a real file is shown by itself with no placeholder label, badge, tone background, or overlay; a missing file keeps the clean placeholder without a broken image icon.
 
 These are the exact current project folders. Use the project slug exactly as written:
 
@@ -199,10 +195,10 @@ These are the exact current project folders. Use the project slug exactly as wri
 For example, the first project's complete media set would be:
 
 ```text
-artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/cover.webp
-artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/gallery-01.webp
-artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/gallery-02.webp
-artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/gallery-03.webp
+artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/cover.jpg
+artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/gallery-01.jpg
+artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/gallery-02.jpg
+artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/gallery-03.jpg
 artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/saveit-app/video.mp4
 ```
 
@@ -272,9 +268,9 @@ The project record supports these fields:
 | `context` | The background or situation behind the project. |
 | `approach` | The short explanation of how you worked on it. |
 | `problem`, `research`, `insights`, `process`, `wireframes`, `design`, `finalResult`, `outcome` | Optional longer case-study text fields available for future project-story sections. |
-| `coverImage` | Public path to the project's `cover.webp`. |
-| `gallery` | Array of public paths to `gallery-01.webp`, `gallery-02.webp`, and `gallery-03.webp`. |
-| `video` | Optional public path to `video.mp4`. The field is available, but the current detail page still displays a motion placeholder. |
+| `coverImage` | Public path to the project's `cover.jpg`. |
+| `gallery` | Array of public paths to `gallery-01.jpg`, `gallery-02.jpg`, and `gallery-03.jpg`. |
+| `video` | Optional public path to `video.mp4`. When the file exists, the current detail page renders it as the motion reel. |
 | `behanceUrl`, `githubUrl`, `externalUrl` | Optional external links. The current detail page displays `externalUrl` when provided. |
 | `placeholderTone` | One of `'violet'`, `'lime'`, `'blue'`, `'coral'`, or `'sand'`. This is the fallback placeholder colour. |
 | `translations` | Optional French, German, and Spanish versions of the title, description, context, and approach. |
@@ -295,10 +291,10 @@ A small project entry can look like this:
   placeholderTone: 'violet',
   context: 'Why the project existed.',
   approach: 'How you approached the work.',
-  coverImage: '/portfolio/assets/projects/new-project-name/cover.webp',
+  coverImage: '/portfolio/assets/projects/new-project-name/cover.jpg',
   gallery: [
-    '/portfolio/assets/projects/new-project-name/gallery-01.webp',
-    '/portfolio/assets/projects/new-project-name/gallery-02.webp',
+    '/portfolio/assets/projects/new-project-name/gallery-01.jpg',
+    '/portfolio/assets/projects/new-project-name/gallery-02.jpg',
   ],
 }
 ```
@@ -358,10 +354,10 @@ artifacts/ines-mlaouhi-portfolio/public/portfolio/assets/projects/<your-project-
 Save the files using the exact names:
 
 ```text
-cover.webp
-gallery-01.webp
-gallery-02.webp
-gallery-03.webp
+cover.jpg
+gallery-01.jpg
+gallery-02.jpg
+gallery-03.jpg
 video.mp4
 ```
 
@@ -404,7 +400,7 @@ If it does not appear:
 - Check that every media path starts with `/portfolio/assets/`.
 - Check that the file is inside `public/portfolio/assets/`, not beside it.
 - Check capitalization and spaces in every filename.
-- Remember that a `video` path is currently stored as data but is not yet rendered by the current detail component.
+- Remember that missing media intentionally keeps the clean placeholder; upload the exact documented filename to make the real media appear.
 
 ## 5. Keep edits non-technical
 

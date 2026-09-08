@@ -38,7 +38,17 @@ export type Project = {
   translations?: Partial<Record<'fr' | 'de' | 'es', Partial<Pick<Project, 'title' | 'description' | 'context' | 'approach'>>>>;
 };
 
-export const projects: Project[] = [
+const projectMedia = (slug: string): Pick<Project, 'coverImage' | 'gallery' | 'video'> => ({
+  coverImage: `/portfolio/assets/projects/${slug}/cover.jpg`,
+  gallery: [
+    `/portfolio/assets/projects/${slug}/gallery-01.jpg`,
+    `/portfolio/assets/projects/${slug}/gallery-02.jpg`,
+    `/portfolio/assets/projects/${slug}/gallery-03.jpg`,
+  ],
+  video: `/portfolio/assets/projects/${slug}/video.mp4`,
+});
+
+const projectList: Project[] = [
   { slug: 'saveit-app', title: 'SAVEIT App', category: 'UI/UX', tags: ['UI/UX'], description: 'A mobile interface study for saving, organising and returning to the things worth keeping.', year: '2023', role: 'UX/UI design', layoutType: 'grid-a', featured: true, placeholderTone: 'violet', context: 'SAVEIT explores a calmer way to collect and revisit inspiration.', approach: 'The work follows a simple rhythm: capture quickly, find easily and leave room for the next idea.' },
   { slug: '3d-fox-character-modeling', title: '3D Fox Character Modeling', category: 'Motion Design', tags: ['Motion Design'], description: 'Character modelling and motion studies built from graphic, playful forms.', year: '2023', role: '3D / motion design', layoutType: 'grid-b', featured: true, placeholderTone: 'coral', context: 'A study in building personality through form, surface and movement.', approach: 'Shape, colour and a small shift in posture carry the visual story.' },
   { slug: 'viatopia', title: 'VIATOPIA', category: 'Brand Identity', tags: ['Brand Identity'], description: 'A visual identity built around movement, curiosity and the feeling of discovering a place.', year: '2023', role: 'Brand identity / digital', layoutType: 'grid-c', featured: true, placeholderTone: 'lime', context: 'VIATOPIA needed a visual system with energy and room to travel across touchpoints.', approach: 'The identity uses movement and a flexible graphic vocabulary instead of predictable travel imagery.' },
@@ -62,6 +72,11 @@ export const projects: Project[] = [
   { slug: '3d-axolotl-character-design', title: '3D Axolotl Character Design', category: 'Motion Design', tags: ['Motion Design'], description: 'A 3D character design study focused on the axolotl form.', year: '2023', role: '3D / motion design', layoutType: 'grid-a', placeholderTone: 'coral', context: 'A character exploration built through modelling, expression and surface.', approach: 'Simple shifts in shape and pose give the character its personality.' },
   { slug: '3d-chair-capsule', title: '3D Chair Capsule', category: 'Motion Design', tags: ['Motion Design'], description: 'A 3D study exploring the chair as an object, shape and capsule.', year: '2023', role: '3D / motion design', layoutType: 'grid-c', placeholderTone: 'violet', context: 'A form study centred on object, proportion and presentation.', approach: 'Light, rotation and surface help the object become a graphic composition.' },
 ];
+
+export const projects: Project[] = projectList.map((project) => ({
+  ...project,
+  ...projectMedia(project.slug),
+}));
 
 export const categories = ['All', 'UI/UX', 'Social Media', 'Graphic Design', 'Brand Identity', 'Motion Design'];
 export const getProject = (slug?: string) => projects.find((project) => project.slug === slug);

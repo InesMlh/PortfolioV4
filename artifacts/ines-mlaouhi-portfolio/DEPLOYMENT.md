@@ -17,6 +17,7 @@ Create the Vercel project from the repository root and use these values:
 
 - **Framework Preset:** Vite
 - **Root Directory:** `.`
+- **Include Files Outside the Root Directory:** No. The root is the repository root, so the monorepo lockfile, workspace package, and portfolio artifact are already inside the build context.
 - **Install Command:** `pnpm install --frozen-lockfile`
 - **Build Command:** `pnpm --filter @workspace/ines-mlaouhi-portfolio run build`
 - **Output Directory:** `artifacts/ines-mlaouhi-portfolio/dist/public`
@@ -35,7 +36,9 @@ Add these in **Vercel → Project → Settings → Environment Variables**. Add 
 
 | Variable | Purpose | Where to get it |
 | --- | --- | --- |
-| `VITE_FORMSPREE_ENDPOINT` | Receives Contact, Services, and Training form submissions and forwards them to Ines. | Create a Formspree form at formspree.io, set its destination email to Ines's inbox, then copy the endpoint URL (for example, `https://formspree.io/f/xxxxxxxx`). |
+| `VITE_FORMSPREE_ENDPOINT` | Receives Contact, Services, and Training form submissions and forwards them to Ines. | The configured endpoint is `https://formspree.io/f/mrpgyrwb`. |
+
+No other environment variable is required by the portfolio build. `PORT` and `BASE_PATH` are optional Replit development settings and should not be added to Vercel for this static Vite deployment.
 
 ### Form setup, step by step
 

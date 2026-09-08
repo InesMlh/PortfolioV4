@@ -29,12 +29,49 @@ async function submitPortfolioForm(payload: Record<string, string>) {
   if (!response.ok) throw new Error(`Form submission failed with status ${response.status}`);
 }
 
+type PublicAssetStatus = 'checking' | 'ready' | 'missing';
+
+const publicAssetChecks = new Map<string, Promise<boolean>>();
+
+function checkPublicAsset(src: string) {
+  const existingCheck = publicAssetChecks.get(src);
+  if (existingCheck) return existingCheck;
+  const check = fetch(src, { method: 'HEAD', cache: 'no-store' })
+    .then((response) => response.ok)
+    .catch(() => false);
+  publicAssetChecks.set(src, check);
+  return check;
+}
+
+function usePublicAsset(src?: string) {
+  const [status, setStatus] = useState<PublicAssetStatus>(src ? 'checking' : 'missing');
+
+  useEffect(() => {
+    let active = true;
+    if (!src) {
+      setStatus('missing');
+      return () => {
+        active = false;
+      };
+    }
+    setStatus('checking');
+    checkPublicAsset(src).then((available) => {
+      if (active) setStatus(available ? 'ready' : 'missing');
+    });
+    return () => {
+      active = false;
+    };
+  }, [src]);
+
+  return status === 'ready';
+}
+
 function IntroPreloader() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const timer = window.setTimeout(() => setVisible(false), reducedMotion ? 350 : 3600);
+    const timer = window.setTimeout(() => setVisible(false), reducedMotion ? 350 : 700);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -345,12 +382,13 @@ function SiteAtmosphere() {
 function PlaceholderVisual({ project, variant = 'cover' }: { project: Project; variant?: 'cover' | 'detail' | 'gallery' }) {
   const { copy } = useLocale();
   const image = variant === 'cover' ? project.coverImage : project.gallery?.[0];
+  const imageAvailable = usePublicAsset(image);
+  const [imageFailed, setImageFailed] = useState(false);
+  useEffect(() => setImageFailed(false), [image]);
+  const showImage = imageAvailable && !imageFailed;
   return (
-    <div className={`placeholder-visual tone-${project.placeholderTone} placeholder-${variant} ${image ? 'has-image' : ''}`} role="img" aria-label={`${project.title} — ${image ? copy.placeholder : copy.placeholder}`}>
-      {image && <img src={image} alt={`${project.title} project visual`} />}
-      <div className="placeholder-lines" />
-      <div className="placeholder-symbol"><span>{project.title.slice(0, 2).toUpperCase()}</span></div>
-      <div className="placeholder-label"><span>{project.title}</span><small>{copy.placeholder} · {variant === 'cover' ? '1600 × 1000' : '1920 × 1200'}</small></div>
+    <div className={`placeholder-visual tone-${project.placeholderTone} placeholder-${variant} ${showImage ? 'has-image image-ready' : ''}`} role="img" aria-label={`${project.title} — ${showImage ? copy.placeholder : copy.placeholder}`}>
+      {showImage ? <img src={image} alt={`${project.title} project visual`} onError={() => setImageFailed(true)} /> : <><div className="placeholder-lines" /><div className="placeholder-symbol"><span>{project.title.slice(0, 2).toUpperCase()}</span></div><div className="placeholder-label"><span>{project.title}</span><small>{copy.placeholder} · {variant === 'cover' ? '1600 × 1000' : '1920 × 1200'}</small></div></>}
     </div>
   );
 }
@@ -423,12 +461,24 @@ function Home() {
       <section className="blog-section ambient-section page-container section-space">
           <div className="section-heading"><div><h2>{copy.blog}</h2></div><span><Markup>{copy.blogNote}</Markup></span></div>
         <a className="article-feature" href="https://attentioninsight.com/from-clarity-to-experience-a-conversation-with-ux-ui-designer-ines-mlaouhi/" target="_blank" rel="noopener noreferrer" data-testid="link-featured-article">
-          <PlaceholderVisual project={{ ...projects[0], title: 'Attention Insight' }} variant="gallery" />
+          <ArticleFeatureVisual />
             <div className="article-copy"><span className="section-kicker">{copy.articleKicker}</span><h3>{copy.articleTitle}</h3><span className="template-button template-button-small"><span>{copy.readArticle}</span><ArrowRight size={16} /></span></div>
         </a>
       </section>
       <Footer />
     </main>
+  );
+}
+
+function ArticleFeatureVisual() {
+  const { copy } = useLocale();
+  const imageAvailable = usePublicAsset('/portfolio/assets/attention-insight.jpg');
+  return imageAvailable ? (
+    <div className="article-feature-media">
+      <img src="/portfolio/assets/attention-insight.jpg" alt="Attention Insight feature" />
+    </div>
+  ) : (
+    <PlaceholderVisual project={{ ...projects[0], title: 'Attention Insight' }} variant="gallery" />
   );
 }
 
@@ -560,9 +610,10 @@ function ServiceContactForm() {
 
 function About() {
   const { copy } = useLocale();
+  const portraitAvailable = usePublicAsset('/portfolio/assets/ines-portrait.jpg');
   return (
     <main className="template-page ambient-page page-container">
-      <section className="inner-banner about-hero two-column"><AmbientVisual variant="orbit" /><div><span className="section-kicker">{copy.aboutKicker}</span><h1><Markup>{copy.aboutTitle}</Markup></h1><p>{copy.aboutBody}</p></div><div className="portrait-placeholder"><span>{copy.portraitPlaceholder}</span><small>1200 × 1500 · 4:5</small></div></section>
+      <section className="inner-banner about-hero two-column"><AmbientVisual variant="orbit" /><div><span className="section-kicker">{copy.aboutKicker}</span><h1><Markup>{copy.aboutTitle}</Markup></h1><p>{copy.aboutBody}</p></div><div className={`portrait-placeholder ${portraitAvailable ? 'has-image' : ''}`}>{portraitAvailable ? <img src="/portfolio/assets/ines-portrait.jpg" alt="Portrait of Ines Mlaouhi" /> : <><span>{copy.portraitPlaceholder}</span><small>1200 × 1500 · 4:5</small></>}</div></section>
        <section className="about-intro ambient-section section-space two-column"><h2><Markup>{copy.aboutIntroTitle}</Markup></h2><div className="section-copy"><p>{copy.aboutIntroBody}</p><p>{copy.aboutSecondBody}</p></div></section>
       <section className="tools-section ambient-section section-space two-column"><h2><Markup>{copy.toolsTitle}</Markup></h2><div className="tool-list">{copy.tools.map((tool, index) => <div key={tool}><span>0{index + 1}</span><strong>{tool}</strong></div>)}</div></section>
        <section className="approach-section ambient-section section-space two-column"><h2><Markup>{copy.approachTitle}</Markup></h2><div className="section-copy"><p>{copy.approachBody}</p><p>{copy.aboutSecondBody}</p></div></section>
@@ -653,19 +704,21 @@ function Trainings() {
   const { copy, language } = useLocale();
   const training = projects.find((project) => project.slug === 'graphic-design-training');
   const displayTraining = training ? localizedProject(training, language, copy) : undefined;
+  const trainingVideoAvailable = usePublicAsset('/portfolio/assets/training/training-reel.mp4');
+  const trainingGallery = [1, 2, 3].map((index) => `/portfolio/assets/training/training-0${index}.jpg`);
   return (
     <main className="template-page ambient-page page-container">
        <section className="inner-banner"><AmbientVisual variant="motion" /><span className="section-kicker">{copy.trainingKicker}</span><h1><Markup>{copy.trainingTitle}</Markup></h1><p>{copy.trainingBody}</p></section>
        <section className="training-feature section-space two-column">
           <div><span className="section-kicker">{copy.trainingLabel}</span><h2>{copy.trainingLabel}</h2><p>{copy.trainingProjectBody}</p></div>
-         <div className="video-placeholder-screen training-video-screen"><span className="video-placeholder-play" aria-hidden="true">▶</span><span>{copy.placeholder} · 1080 × 1920</span></div>
+          {trainingVideoAvailable ? <div className="video-placeholder-screen training-video-screen training-video-real"><video src="/portfolio/assets/training/training-reel.mp4" controls playsInline muted loop aria-label={copy.trainingLabel} /></div> : <div className="video-placeholder-screen training-video-screen"><span className="video-placeholder-play" aria-hidden="true">▶</span><span>{copy.placeholder} · 1080 × 1920</span></div>}
        </section>
        <section className="training-approach ambient-section section-space two-column">
          <h2><Markup>{copy.trainingApproachTitle}</Markup></h2>
          <div className="section-copy"><p>{copy.trainingApproachBody}</p><p>{displayTraining?.approach ?? copy.trainingProjectBody}</p></div>
       </section>
       <section className="training-gallery section-space" aria-label={copy.trainingLabel}>
-         {[0, 1, 2].map((index) => <div className={`training-gallery-item training-gallery-item-${index + 1}`} key={index}><PlaceholderVisual project={{ ...(displayTraining ?? training ?? projects[0]), title: `${displayTraining?.title ?? copy.trainingLabel} ${index + 1}`, gallery: displayTraining?.gallery?.slice(index, index + 1) }} variant="gallery" /></div>)}
+          {[0, 1, 2].map((index) => <div className={`training-gallery-item training-gallery-item-${index + 1}`} key={index}><PlaceholderVisual project={{ ...(displayTraining ?? training ?? projects[0]), title: `${displayTraining?.title ?? copy.trainingLabel} ${index + 1}`, gallery: [trainingGallery[index]] }} variant="gallery" /></div>)}
       </section>
       <TrainingInquiryForm />
       <Footer />
@@ -793,7 +846,7 @@ function ProjectDetailGallery({ project, layout }: { project: Project; layout: P
     <section className={`detail-gallery detail-gallery-${layout}`} aria-label={copy.openImage}>
       {layout === 'motion' && (
         <div className="motion-reel">
-          <div className="motion-reel-screen"><PlaceholderVisual project={project} variant="detail" /><span className="motion-reel-play">▶</span></div>
+          <MotionReelVisual project={project} />
           <div className="motion-reel-copy"><span className="section-kicker">Motion / 3D study</span><p>{project.description}</p></div>
         </div>
       )}
@@ -802,6 +855,21 @@ function ProjectDetailGallery({ project, layout }: { project: Project; layout: P
   );
 }
 
+function MotionReelVisual({ project }: { project: Project }) {
+  const { copy } = useLocale();
+  const videoAvailable = usePublicAsset(project.video);
+  return videoAvailable ? (
+    <div className="motion-reel-screen motion-reel-real">
+      <video src={project.video} controls playsInline muted loop aria-label={`${project.title} motion reel`} />
+    </div>
+  ) : (
+    <div className="motion-reel-screen">
+      <PlaceholderVisual project={project} variant="detail" />
+      <span className="motion-reel-play" aria-hidden="true">▶</span>
+      <span className="sr-only">{copy.placeholder}</span>
+    </div>
+  );
+}
 function ProjectPage() {
   const { slug } = useParams<{ slug: string }>();
   const { copy, language } = useLocale();
